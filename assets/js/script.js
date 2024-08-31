@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-  const cities = JSON.parse(localStorage.getItem("cities")) || [];
+  let cities = JSON.parse(localStorage.getItem("cities")) || [];
   cities.forEach(function (item) {
     displayCities(item);
   });
@@ -53,7 +53,6 @@ window.addEventListener("load", () => {
         const roundedTemp = Math.round(data.main.temp);
         const roundedTempMin = Math.round(data.main.temp_min);
         const roundedTempMax = Math.round(data.main.temp_max);
-        console.log(data);
         // Mettre à jour le DOM avec les valeurs arrondies
         cityName.text(data.name);
         cityTemp.text(`${roundedTemp} °C `);
@@ -62,8 +61,7 @@ window.addEventListener("load", () => {
       },
     });
   }
-  let min = "",
-    max = "";
+
   function getTempPerCity(cityName, cityTemp, city = "Paris") {
     const url =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -145,22 +143,28 @@ window.addEventListener("load", () => {
   const sendButtonModal = $("#submitModalBtn");
 
   function addCityToLoclStorage(cityName) {
-    let cities = JSON.parse(localStorage.getItem("cities")) || [];
-    cities.push(cityName);
-    localStorage.setItem("cities", JSON.stringify(cities));
+    let currentcities = JSON.parse(localStorage.getItem("cities")) || [];
+    currentcities.push(cityName);
+    localStorage.setItem("cities", JSON.stringify(currentcities));
+    cities = JSON.parse(localStorage.getItem("cities")) || [];
   }
   function deleteCityToLocalStorage(cityName) {
-    let cities = JSON.parse(localStorage.getItem("cities")) || [];
-    console.log(cities);
-    cities = cities.filter(function (city) {
-      console.log(cityName.toUpperCase());
+    let citiesfilter = JSON.parse(localStorage.getItem("cities")) || [];
+    citiesfilter = citiesfilter.filter(function (city) {
       return city !== cityName.toUpperCase();
     });
-    localStorage.setItem("cities", JSON.stringify(cities));
+    localStorage.setItem("cities", JSON.stringify(citiesfilter));
+    cities = JSON.parse(localStorage.getItem("cities")) || [];
   }
   addCityButton.click(function () {
-    modalElement.show();
-    overlayElement.show();
+    if (cities.length >= 2) {
+      alert("Vous avez atteind le nombre de ville autorisé");
+
+      return;
+    } else {
+      modalElement.show();
+      overlayElement.show();
+    }
   });
   closeModalButton.click(function () {
     modalElement.hide();
