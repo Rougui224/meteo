@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <title>Méteo</title>
+  </head>
+  <body>
+    <img class="background" src="./assets/pictures/sky-day.jpg" alt="Sky" />
+    <div class="app">
+      <header class="header">
+        <div class="header_icon">
+          <img
+            class="header_icon_img"
+            src="./assets/pictures/plus-small.png"
+            alt="plus-small trensparent"
+          />
+        </div>
+        <ul class="header_date">
+          <li class="header_date_time"></li>
+          <li class="header_date_area"></li>
+        </ul>
+      </header>
+      <main>
+        <ul class="cities">
+          <!-- les villes ajoutées apparaîtrons ici -->
+        </ul>
+        <div class="defaultCity">
+          <article class="defaultCity_temp">
+            <h1>Météo</h1>
+            <h2>
+              <!-- le nom ici -->
+            </h2>
+            <p>
+              <!-- la temperature ici -->
+            </p>
+          </article>
+          <ul class="defaultCity_minmax">
+            <li class="min">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>°</span>
+            </li> 
+            <li class="max">
+              <i class="fa-solid fa-arrow-up"></i>
+              <span>°</span>
+            </li> 
+            </li>
+          </ul>
+        </div>
+      </main>
+      <!-- La div de fond -->
+      <div id="overlay"></div>
+
+      <!-- La fenêtre modale -->
+      <div id="modal">
+        <div class="modal-content">
+          <span id="closeModalBtn">&times;</span>
+          <h2>Ville</h2>
+          <input type="text" id="modalInput" placeholder="Tapez ici..." />
+          <button id="submitModalBtn">Envoyer</button>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/b5b61096f1.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
