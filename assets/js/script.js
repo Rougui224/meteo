@@ -122,17 +122,26 @@ window.addEventListener("load", () => {
     );
     setDefaultCity(cityName);
   }
+  let option = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000,
+  };
   if ("geolocation" in navigator) {
-    navigator.geolocation.watchPosition((position) => {
-      getTempPerPosition(
-        position.coords.latitude,
-        position.coords.longitude,
-        cityTitleElement,
-        cityTempElement,
-        tempMinElement,
-        tempMaxElement
-      );
-    }, error);
+    navigator.geolocation.watchPosition(
+      (position) => {
+        getTempPerPosition(
+          position.coords.latitude,
+          position.coords.longitude,
+          cityTitleElement,
+          cityTempElement,
+          tempMinElement,
+          tempMaxElement
+        );
+      },
+      error,
+      option
+    );
   }
 
   // Ajouter une ville
